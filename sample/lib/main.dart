@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample/next_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -51,21 +52,17 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Hiromuの勉強'),
-          actions: <Widget>[Icon(Icons.add), Icon(Icons.share)]),
+        title: Text('Hiromuの勉強'),
+      ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Hiromu',
-            ),
-            Text('WAaaaaa'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        child: RaisedButton(
+          child: Text('次へ'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NextPage()),
+            );
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(
