@@ -48,6 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  String text = '次へ';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,12 +58,16 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: RaisedButton(
-          child: Text('次へ'),
-          onPressed: () {
-            Navigator.push(
+          child: Text(text),
+          onPressed: () async {
+            final result = await Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => NextPage()),
+              MaterialPageRoute(builder: (context) => NextPage('Hiromu')),
             );
+            setState(() {
+              text = result;
+            });
+            print(result);
           },
         ),
       ),
