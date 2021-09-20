@@ -57,18 +57,29 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Hiromuの勉強'),
       ),
       body: Center(
-        child: RaisedButton(
-          child: Text(text),
-          onPressed: () async {
-            final result = await Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => NextPage('Hiromu')),
-            );
-            setState(() {
-              text = result;
-            });
-            print(result);
-          },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(
+              Icons.car_rental,
+              size: 200,
+            ),
+            Image.network(
+                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
+            RaisedButton(
+              child: Text(text),
+              onPressed: () async {
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NextPage('Hiromu')),
+                );
+                setState(() {
+                  text = result;
+                });
+                print(result);
+              },
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
