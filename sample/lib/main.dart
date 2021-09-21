@@ -64,6 +64,14 @@ class _MyHomePageState extends State<MyHomePage> {
               Icons.car_rental,
               size: 200,
             ),
+            Text(
+              'ジーコさん',
+              style: TextStyle(
+                  fontSize: 40,
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline),
+            ),
             Image.network(
                 'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
             RaisedButton(
