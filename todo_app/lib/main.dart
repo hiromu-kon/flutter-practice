@@ -48,14 +48,14 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         backgroundColor: Colors.teal[100],
         appBar: AppBar(
-          title: Text("Todo App"),
+          title: const Text("Todo App"),
         ),
         body: Column(
           children: [
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               child: TextField(
-                decoration: InputDecoration(hintText: '入力してください'),
+                decoration: const InputDecoration(hintText: '入力してください'),
                 onChanged: (value) {
                   content = value;
                 },
@@ -63,15 +63,15 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                   top: 0.0, right: 0.0, bottom: 30.0, left: 0.0),
               child: RaisedButton(
                 color: Colors.teal[400],
                 textColor: Colors.white,
-                child: Text("保存"),
+                child: const Text("保存"),
                 onPressed: () {
                   setState(() {
-                    if (content.length > 0) {
+                    if (content.isNotEmpty) {
                       todoList.add(content);
                     }
                   });
@@ -83,13 +83,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     itemCount: todoList.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                           top: 0.0,
                           right: 0.0,
                           bottom: 0.0,
                           left: 0.0,
                         ),
-                        margin: EdgeInsets.only(
+                        margin: const EdgeInsets.only(
                           top: 1.0,
                           right: 0.0,
                           bottom: 0.0,
@@ -97,10 +97,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         color: Colors.cyan[600],
                         child: ListTile(
-                          leading: Icon(Icons.star),
+                          leading: const Icon(Icons.star),
                           title: Text(
                             ("$index : ${todoList[index]}"),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'OpenSans',
                               fontSize: 24,
                               color: Colors.white,
