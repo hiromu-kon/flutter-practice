@@ -4,24 +4,22 @@ import 'package:flutter/cupertino.dart';
 import '../domain/book.dart';
 
 class BookListModel extends ChangeNotifier {
-  final Stream<QuerySnapshot> _usersStream =
-      FirebaseFirestore.instance.collection('books').snapshots();
-
   List<Book>? books;
 
   void fetchBookList() async {
-    _usersStream.listen((QuerySnapshot snapshot) {
-      final List<Book> books = snapshot.docs.map((DocumentSnapshot document) {
-        Map<String, dynamic> data = document.data() as Map<String, dynamic>;
-        final String title = data['title'];
-        final String author = data['author'];
+    final QuerySnapshot snapshot =
+        await FirebaseFirestore.instance.collection('books').get();
 
-        return Book(title, author);
-      }).toList();
+    final List<Book> books = snapshot.docs.map((DocumentSnapshot document) {
+      Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+      final String title = data['title'];
+      final String author = data['author'];
 
-      this.books = books;
+      return Book(title, author);
+    }).toList();
 
-      notifyListeners();
-    });
+    this.books = books;
+
+    notifyListeners();
   }
 }

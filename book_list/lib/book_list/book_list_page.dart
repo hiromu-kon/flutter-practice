@@ -1,3 +1,4 @@
+import 'package:book_list/add_book/add_book_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +41,23 @@ class BookListPage extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () async {
+            final bool? added = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddBookPage(),
+                fullscreenDialog: true,
+              ),
+            );
+
+            if (added != null && added) {
+              final snackBar = SnackBar(
+                backgroundColor: Colors.green,
+                content: Text('本を追加しました'),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            }
+          },
           tooltip: 'Increment',
           child: const Icon(Icons.add),
         ),
