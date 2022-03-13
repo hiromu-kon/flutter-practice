@@ -10,7 +10,7 @@ class BookListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<BookListModel>(
-      create: (_) => BookListModel(),
+      create: (_) => BookListModel()..fetchBookList(),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('本一覧'),
