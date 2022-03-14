@@ -60,8 +60,6 @@ class BookListPage extends StatelessWidget {
                                 }
 
                                 model.fetchBookList();
-
-                                model.fetchBookList();
                               },
                               backgroundColor: Color(0xFF21B7CA),
                               foregroundColor: Colors.white,
@@ -69,7 +67,10 @@ class BookListPage extends StatelessWidget {
                               label: '編集',
                             ),
                             SlidableAction(
-                              onPressed: null,
+                              onPressed: (context) async {
+                                await showConfirmDialog(
+                                    context, book, model, _scaffoldKey);
+                              },
                               backgroundColor: Color(0xFFFE4A49),
                               foregroundColor: Colors.white,
                               icon: Icons.delete,
@@ -113,4 +114,38 @@ class BookListPage extends StatelessWidget {
       ),
     );
   }
+}
+
+Future showConfirmDialog(
+    BuildContext context, Book book, BookListModel model, _scaffoldKey) {
+  return showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (_) {
+      return AlertDialog(
+        title: Text('削除の確認'),
+        content: Text("『${book.title}』を削除しますか？"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('いいえ'),
+          ),
+          TextButton(
+            onPressed: () async {
+              await model.deleteBook(book);
+
+              Navigator.pop(context);
+
+              final snackBar = SnackBar(
+                backgroundColor: Colors.red,
+                content: Text("${book.title}を削除しました"),
+              );
+              _scaffoldKey.currentState?.showSnackBar(snackBar);
+            },
+            child: Text('はい'),
+          )
+        ],
+      );
+    },
+  );
 }
