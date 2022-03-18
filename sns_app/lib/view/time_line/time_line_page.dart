@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sns_app/model/account.dart';
 import 'package:sns_app/model/post.dart';
-import 'package:sns_app/view/time_line/post_page.dart';
 
 class TimeLinePage extends StatefulWidget {
   @override
@@ -109,13 +108,6 @@ class _TimeLinePageState extends State<TimeLinePage> {
             ),
           );
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => PostPage()));
-        },
-        child: Icon(Icons.chat_bubble_outline),
       ),
     );
   }

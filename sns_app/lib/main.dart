@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sns_app/view/screen.dart';
 import 'package:sns_app/view/time_line/time_line_page.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TimeLinePage(),
+      home: Screen(),
     );
   }
 }
