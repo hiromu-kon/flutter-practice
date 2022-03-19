@@ -12,7 +12,7 @@ class _TimeLinePageState extends State<TimeLinePage> {
   Account myAccount = Account(
     id: '1',
     name: 'Flutter User',
-    userId: '@flutter_id',
+    userId: 'flutter_id',
     imagePath:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeAx_d6XyicREzk1ykPoT1-vD6yKH9oTaO0w&usqp=CAU',
     createdTime: DateTime.now(),
@@ -68,6 +68,9 @@ class _TimeLinePageState extends State<TimeLinePage> {
                   radius: 22,
                   foregroundImage: NetworkImage(myAccount.imagePath),
                 ),
+                SizedBox(
+                  width: 10,
+                ),
                 Expanded(
                   child: Container(
                     child: Column(
@@ -84,8 +87,11 @@ class _TimeLinePageState extends State<TimeLinePage> {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
+                                SizedBox(
+                                  width: 5,
+                                ),
                                 Text(
-                                  myAccount.userId,
+                                  '@${myAccount.userId}',
                                   style: TextStyle(
                                     color: Colors.grey,
                                   ),
