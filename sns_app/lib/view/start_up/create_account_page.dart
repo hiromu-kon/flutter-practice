@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CreateAccuntPage extends StatefulWidget {
   const CreateAccuntPage({Key? key}) : super(key: key);
@@ -13,6 +16,19 @@ class _CreateAccuntPageState extends State<CreateAccuntPage> {
   TextEditingController selfIntroductionController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
+
+  File? image;
+  ImagePicker picker = ImagePicker();
+
+  Future<void> getImageFromGallery() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        image = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +50,15 @@ class _CreateAccuntPageState extends State<CreateAccuntPage> {
               SizedBox(
                 height: 30,
               ),
-              CircleAvatar(
-                radius: 40,
-                child: Icon(Icons.add),
+              GestureDetector(
+                onTap: () {
+                  getImageFromGallery();
+                },
+                child: CircleAvatar(
+                  foregroundImage: image == null ? null : FileImage(image!),
+                  radius: 40,
+                  child: Icon(Icons.add),
+                ),
               ),
               Container(
                 width: 300,
@@ -88,7 +110,8 @@ class _CreateAccuntPageState extends State<CreateAccuntPage> {
                         userIdController.text.isNotEmpty &&
                         selfIntroductionController.text.isNotEmpty &&
                         emailController.text.isNotEmpty &&
-                        passController.text.isNotEmpty) {
+                        passController.text.isNotEmpty &&
+                        image != null) {
                       Navigator.pop(context);
                     }
                   },
