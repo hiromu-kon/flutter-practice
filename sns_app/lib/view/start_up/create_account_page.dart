@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:sns_app/model/account.dart';
 import 'package:sns_app/utils/authentication.dart';
+import 'package:sns_app/utils/firestore/users.dart';
 
 class CreateAccuntPage extends StatefulWidget {
   const CreateAccuntPage({Key? key}) : super(key: key);
@@ -33,7 +35,7 @@ class _CreateAccuntPageState extends State<CreateAccuntPage> {
     }
   }
 
-  Future<void> uploadImage(String uid) async {
+  Future<String> uploadImage(String uid) async {
     final FirebaseStorage storageInstance = FirebaseStorage.instance;
     final Reference ref = storageInstance.ref();
 
@@ -41,6 +43,8 @@ class _CreateAccuntPageState extends State<CreateAccuntPage> {
 
     String downloadUrl = await storageInstance.ref(uid).getDownloadURL();
     print('image_path: $downloadUrl');
+
+    return downloadUrl;
   }
 
   @override
@@ -130,8 +134,19 @@ class _CreateAccuntPageState extends State<CreateAccuntPage> {
                           pass: passController.text);
 
                       if (result is UserCredential) {
-                        await uploadImage(result.user!.uid);
-                        Navigator.pop(context);
+                        String imagePath = await uploadImage(result.user!.uid);
+                        Account newAccount = Account(
+                            id: result.user!.uid,
+                            name: nameController.text,
+                            userId: userIdController.text,
+                            selfIntroduction: selfIntroductionController.text,
+                            imagePath: imagePath);
+
+                        var _result = await UserFirestore.setUser(newAccount);
+
+                        if (_result == true) {
+                          Navigator.pop(context);
+                        }
                       }
                     }
                   },
