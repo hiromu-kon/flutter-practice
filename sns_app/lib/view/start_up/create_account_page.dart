@@ -53,18 +53,18 @@ class _CreateAccuntPageState extends State<CreateAccuntPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        iconTheme: IconThemeData(color: Colors.black),
-        title: Text(
+        iconTheme: const IconThemeData(color: Colors.black),
+        title: const Text(
           '新規登録',
           style: TextStyle(color: Colors.black),
         ),
       ),
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               GestureDetector(
@@ -74,51 +74,51 @@ class _CreateAccuntPageState extends State<CreateAccuntPage> {
                 child: CircleAvatar(
                   foregroundImage: image == null ? null : FileImage(image!),
                   radius: 40,
-                  child: Icon(Icons.add),
-                ),
-              ),
-              Container(
-                width: 300,
-                child: TextField(
-                  controller: nameController,
-                  decoration: InputDecoration(hintText: '名前'),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-                child: Container(
-                  width: 300,
-                  child: TextField(
-                    controller: userIdController,
-                    decoration: InputDecoration(hintText: 'ユーザーID'),
-                  ),
-                ),
-              ),
-              Container(
-                width: 300,
-                child: TextField(
-                  controller: selfIntroductionController,
-                  decoration: InputDecoration(hintText: '自己紹介'),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-                child: Container(
-                  width: 300,
-                  child: TextField(
-                    controller: emailController,
-                    decoration: InputDecoration(hintText: 'メールアドレス'),
-                  ),
-                ),
-              ),
-              Container(
-                width: 300,
-                child: TextField(
-                  controller: passController,
-                  decoration: InputDecoration(hintText: 'パスワード'),
+                  child: const Icon(Icons.add),
                 ),
               ),
               SizedBox(
+                width: 300,
+                child: TextField(
+                  controller: nameController,
+                  decoration: const InputDecoration(hintText: '名前'),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                child: SizedBox(
+                  width: 300,
+                  child: TextField(
+                    controller: userIdController,
+                    decoration: const InputDecoration(hintText: 'ユーザーID'),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 300,
+                child: TextField(
+                  controller: selfIntroductionController,
+                  decoration: const InputDecoration(hintText: '自己紹介'),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                child: SizedBox(
+                  width: 300,
+                  child: TextField(
+                    controller: emailController,
+                    decoration: const InputDecoration(hintText: 'メールアドレス'),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 300,
+                child: TextField(
+                  controller: passController,
+                  decoration: const InputDecoration(hintText: 'パスワード'),
+                ),
+              ),
+              const SizedBox(
                 height: 50,
               ),
               ElevatedButton(
@@ -150,7 +150,7 @@ class _CreateAccuntPageState extends State<CreateAccuntPage> {
                       }
                     }
                   },
-                  child: Text('アカウントを作成'))
+                  child: const Text('アカウントを作成'))
             ],
           ),
         ),

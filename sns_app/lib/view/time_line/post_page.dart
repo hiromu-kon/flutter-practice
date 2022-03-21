@@ -13,7 +13,7 @@ class _PostPageState extends State<PostPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           '新規投稿',
           style: TextStyle(
             color: Colors.black,
@@ -21,7 +21,7 @@ class _PostPageState extends State<PostPage> {
         ),
         backgroundColor: Theme.of(context).canvasColor,
         elevation: 2,
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -30,10 +30,10 @@ class _PostPageState extends State<PostPage> {
             TextField(
               controller: contentController,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            ElevatedButton(onPressed: () {}, child: Text('投稿'))
+            ElevatedButton(onPressed: () {}, child: const Text('投稿'))
           ],
         ),
       ),

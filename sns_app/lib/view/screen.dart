@@ -12,13 +12,13 @@ class Screen extends StatefulWidget {
 
 class _ScreenState extends State<Screen> {
   int selectedIndex = 0;
-  List<Widget> pageList = [TimeLinePage(), AccountPage()];
+  List<Widget> pageList = const [TimeLinePage(), AccountPage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: pageList[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
             label: '',
@@ -37,10 +37,10 @@ class _ScreenState extends State<Screen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => PostPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const PostPage()));
         },
-        child: Icon(Icons.chat_bubble_outline),
+        child: const Icon(Icons.chat_bubble_outline),
       ),
     );
   }

@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:sns_app/utils/authentication.dart';
+import 'package:sns_app/utils/firestore/users.dart';
 import 'package:sns_app/view/screen.dart';
 import 'package:sns_app/view/start_up/create_account_page.dart';
 
@@ -18,57 +20,58 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
-              Text(
+              const Text(
                 'SNS APP',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20.0),
-                child: Container(
+                child: SizedBox(
                   width: 300,
                   child: TextField(
                     controller: emailController,
-                    decoration: InputDecoration(hintText: 'メールアドレス'),
+                    decoration: const InputDecoration(hintText: 'メールアドレス'),
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 width: 300,
                 child: TextField(
                   controller: passController,
-                  decoration: InputDecoration(hintText: 'パスワード'),
+                  decoration: const InputDecoration(hintText: 'パスワード'),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               RichText(
                 text: TextSpan(
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                   children: [
-                    TextSpan(text: 'アカウントを作成していない方は'),
+                    const TextSpan(text: 'アカウントを作成していない方は'),
                     TextSpan(
                       text: 'こちら',
-                      style: TextStyle(color: Colors.blue),
+                      style: const TextStyle(color: Colors.blue),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => CreateAccuntPage()));
+                                  builder: (context) =>
+                                      const CreateAccuntPage()));
                         },
                     ),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 70,
               ),
               ElevatedButton(
@@ -76,12 +79,19 @@ class _LoginPageState extends State<LoginPage> {
                     var result = await Authentication.emailSignIn(
                         email: emailController.text, pass: passController.text);
 
-                    if (result == true) {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => Screen()));
+                    if (result is UserCredential) {
+                      var _result =
+                          await UserFirestore.getUser(result.user!.uid);
+
+                      if (_result == true) {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Screen()));
+                      }
                     }
                   },
-                  child: Text('emailでログイン'))
+                  child: const Text('emailでログイン'))
             ],
           ),
         ),
