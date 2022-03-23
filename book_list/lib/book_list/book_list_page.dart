@@ -68,8 +68,7 @@ class BookListPage extends StatelessWidget {
                             ),
                             SlidableAction(
                               onPressed: (context) async {
-                                await showConfirmDialog(
-                                    context, book, model, _scaffoldKey);
+                                await showConfirmDialog(context, book, model);
                               },
                               backgroundColor: Color(0xFFFE4A49),
                               foregroundColor: Colors.white,
@@ -114,38 +113,42 @@ class BookListPage extends StatelessWidget {
       ),
     );
   }
-}
 
-Future showConfirmDialog(
-    BuildContext context, Book book, BookListModel model, _scaffoldKey) {
-  return showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (_) {
-      return AlertDialog(
-        title: Text('削除の確認'),
-        content: Text("『${book.title}』を削除しますか？"),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('いいえ'),
-          ),
-          TextButton(
-            onPressed: () async {
-              await model.deleteBook(book);
-
-              Navigator.pop(context);
-
-              final snackBar = SnackBar(
-                backgroundColor: Colors.red,
-                content: Text("${book.title}を削除しました"),
+  Future showConfirmDialog(
+      BuildContext context, Book book, BookListModel model) {
+    return showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) {
+        return AlertDialog(
+          title: Text('削除の確認'),
+          content: Text("『${book.title}』を削除しますか？"),
+          actions: [
+            Builder(builder: (context) {
+              return TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('いいえ'),
               );
-              _scaffoldKey.currentState?.showSnackBar(snackBar);
-            },
-            child: Text('はい'),
-          )
-        ],
-      );
-    },
-  );
+            }),
+            Builder(builder: (context) {
+              return TextButton(
+                onPressed: () async {
+                  await model.deleteBook(book);
+
+                  Navigator.pop(context);
+
+                  final snackBar = SnackBar(
+                    backgroundColor: Colors.red,
+                    content: Text("${book.title}を削除しました"),
+                  );
+                  _scaffoldKey.currentState?.showSnackBar(snackBar);
+                },
+                child: Text('はい'),
+              );
+            })
+          ],
+        );
+      },
+    );
+  }
 }
