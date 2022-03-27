@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:sample/next_page.dart';
+import 'package:sample/test_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -102,7 +103,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: ((context) => NextPage())));
               }),
-          SpeedDialChild(child: Icon(Icons.copy), label: 'Copy'),
+          SpeedDialChild(
+              child: Icon(Icons.copy),
+              label: 'Copy',
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => TestPage())));
+              }),
         ],
       ),
       // floatingActionButton: FloatingActionButton(
