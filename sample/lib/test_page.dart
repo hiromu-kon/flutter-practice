@@ -8,14 +8,17 @@ class TestPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leadingWidth: 500,
+        leadingWidth: 300,
         leading: TextButton.icon(
           onPressed: () {},
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            size: 20,
+          ),
           label: Text('プロフィール'),
         ),
         elevation: 1,
-        title: Text(
+        title: const Text(
           '設定',
           style: TextStyle(
             color: Colors.black,

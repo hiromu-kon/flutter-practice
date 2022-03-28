@@ -94,10 +94,14 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: SpeedDial(
+        childrenButtonSize: const Size(70, 70),
+        buttonSize: const Size(70, 70),
+        childMargin: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
         animatedIcon: AnimatedIcons.menu_close,
         children: [
           SpeedDialChild(
               child: Icon(Icons.mail),
+              backgroundColor: Colors.red,
               label: 'Mail',
               onTap: () {
                 Navigator.push(context,
@@ -105,11 +109,31 @@ class _MyHomePageState extends State<MyHomePage> {
               }),
           SpeedDialChild(
               child: Icon(Icons.copy),
+              backgroundColor: Colors.blue,
               label: 'Copy',
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: ((context) => TestPage())));
               }),
+          SpeedDialChild(
+              child: Icon(Icons.person_add),
+              backgroundColor: Colors.green,
+              labelWidget: Column(
+                children: const [
+                  Text(
+                    '編集する',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'Edit',
+                    style: TextStyle(
+                      color: Colors.blueAccent,
+                    ),
+                  )
+                ],
+              ),
+              onTap: () {},
+              labelStyle: TextStyle(fontWeight: FontWeight.w500)),
         ],
       ),
       // floatingActionButton: FloatingActionButton(
