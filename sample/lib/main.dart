@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:sample/next_page.dart';
+import 'package:sample/tabbar_page.dart';
 import 'package:sample/test_page.dart';
 
 void main() {
@@ -132,7 +133,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   )
                 ],
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => TabBarPage())));
+              },
               labelStyle: TextStyle(fontWeight: FontWeight.w500)),
         ],
       ),
