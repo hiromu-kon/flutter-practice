@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:sample/bottom_navigation.dart';
 import 'package:sample/next_page.dart';
 import 'package:sample/tabbar_page.dart';
 import 'package:sample/test_page.dart';
@@ -100,6 +101,16 @@ class _MyHomePageState extends State<MyHomePage> {
         childMargin: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
         animatedIcon: AnimatedIcons.menu_close,
         children: [
+          SpeedDialChild(
+              child: Icon(Icons.mail),
+              backgroundColor: Colors.red,
+              label: 'Mail',
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => BottomNavigation())));
+              }),
           SpeedDialChild(
               child: Icon(Icons.mail),
               backgroundColor: Colors.red,

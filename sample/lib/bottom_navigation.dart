@@ -6,12 +6,18 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: false,
+        title: Text('ABC'),
+      ),
       body: Container(),
       bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(icon: Icon(Icons.abc)),
-        BottomNavigationBarItem(icon: Icon(Icons.back_hand)),
-        BottomNavigationBarItem(icon: Icon(Icons.car_rental))
+        BottomNavigationBarItem(
+          icon: Icon(Icons.abc),
+          label: 'ABC',
+        ),
+        BottomNavigationBarItem(icon: Icon(Icons.back_hand), label: 'HAND'),
+        BottomNavigationBarItem(icon: Icon(Icons.car_rental), label: 'CAR')
       ]),
     );
   }
