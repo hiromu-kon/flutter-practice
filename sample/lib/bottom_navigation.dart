@@ -16,8 +16,14 @@ class BottomNavigation extends StatelessWidget {
           icon: Icon(Icons.abc),
           label: 'ABC',
         ),
-        BottomNavigationBarItem(icon: Icon(Icons.back_hand), label: 'HAND'),
-        BottomNavigationBarItem(icon: Icon(Icons.car_rental), label: 'CAR')
+        BottomNavigationBarItem(
+          icon: Icon(Icons.back_hand),
+          label: 'HAND',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.car_rental),
+          label: 'CAR',
+        )
       ]),
     );
   }
