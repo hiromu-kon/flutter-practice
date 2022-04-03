@@ -76,6 +76,77 @@ class _TopPageState extends State<TopPage> {
         rainyPercent: 0)
   ];
 
+  List<Weather> dailyWeather = [
+    Weather(
+      tempMax: 20,
+      tempMin: 17,
+      time: DateTime(2022, 10, 1),
+      rainyPercent: 0,
+    ),
+    Weather(
+      tempMax: 24,
+      tempMin: 19,
+      time: DateTime(2022, 10, 2),
+      rainyPercent: 0,
+    ),
+    Weather(
+      tempMax: 26,
+      tempMin: 17,
+      time: DateTime(2022, 10, 3),
+      rainyPercent: 0,
+    ),
+    Weather(
+      tempMax: 20,
+      tempMin: 17,
+      time: DateTime(2022, 10, 4),
+      rainyPercent: 0,
+    ),
+    Weather(
+      tempMax: 24,
+      tempMin: 19,
+      time: DateTime(2022, 10, 5),
+      rainyPercent: 0,
+    ),
+    Weather(
+      tempMax: 26,
+      tempMin: 17,
+      time: DateTime(2022, 10, 6),
+      rainyPercent: 0,
+    ),
+    Weather(
+      tempMax: 20,
+      tempMin: 17,
+      time: DateTime(2022, 10, 7),
+      rainyPercent: 0,
+    ),
+    Weather(
+      tempMax: 24,
+      tempMin: 19,
+      time: DateTime(2022, 10, 8),
+      rainyPercent: 0,
+    ),
+    Weather(
+      tempMax: 26,
+      tempMin: 17,
+      time: DateTime(2022, 10, 9),
+      rainyPercent: 0,
+    ),
+    Weather(
+      tempMax: 24,
+      tempMin: 19,
+      time: DateTime(2022, 10, 10),
+      rainyPercent: 0,
+    ),
+    Weather(
+      tempMax: 26,
+      tempMin: 17,
+      time: DateTime(2022, 10, 11),
+      rainyPercent: 0,
+    ),
+  ];
+
+  List<String> weekDay = ['月', '火', '水', '木', '金', '土', '日'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,17 +193,70 @@ class _TopPageState extends State<TopPage> {
                         Text('${DateFormat('H').format(weather.time!)}時'),
                         Text(
                           '${weather.rainyPercent}%',
-                          style: TextStyle(color: Colors.lightBlueAccent),
+                          style: const TextStyle(color: Colors.lightBlueAccent),
                         ),
                         const Icon(Icons.wb_sunny_sharp),
                         Text(
                           '${weather.temp}°',
-                          style: TextStyle(fontSize: 18),
+                          style: const TextStyle(fontSize: 18),
                         )
                       ],
                     ),
                   );
                 }).toList(),
+              ),
+            ),
+            const Divider(
+              height: 0,
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Column(
+                    children: dailyWeather.map((weather) {
+                      return SizedBox(
+                        height: 50,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                                width: 50,
+                                child: Text(
+                                    '${weekDay[weather.time!.weekday - 1]}曜日')),
+                            Row(
+                              children: [
+                                const Icon(Icons.wb_sunny_sharp),
+                                Text(
+                                  '${weather.rainyPercent}%',
+                                  style: const TextStyle(
+                                      color: Colors.lightBlueAccent),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 50,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('${weather.tempMax}',
+                                      style: const TextStyle(fontSize: 16)),
+                                  Text(
+                                    '${weather.tempMin}',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.black.withOpacity(0.4)),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
               ),
             ),
           ],
