@@ -15,7 +15,34 @@ class _TopPageState extends State<TopPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Text('大阪市')),
+      body: SafeArea(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 50,
+            ),
+            const Text(
+              '大阪市',
+              style: TextStyle(fontSize: 25),
+            ),
+            Text(currentWeather.description!),
+            Text(
+              '${currentWeather.temp}',
+              style: const TextStyle(fontSize: 80),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: Text('最高:${currentWeather.tempMax}°'),
+                ),
+                Text('最低:${currentWeather.tempMin}°'),
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 }
