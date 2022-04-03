@@ -153,6 +153,18 @@ class _TopPageState extends State<TopPage> {
       body: SafeArea(
         child: Column(
           children: [
+            Container(
+              width: 200,
+              child: TextField(
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  hintText: '郵便番号を入力',
+                ),
+                onSubmitted: (value) {
+                  print(value);
+                },
+              ),
+            ),
             const SizedBox(
               height: 50,
             ),
