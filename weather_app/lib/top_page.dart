@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/weather.dart';
+import 'package:weather_app/zipcode.dart';
 
 class TopPage extends StatefulWidget {
   const TopPage({Key? key}) : super(key: key);
@@ -160,8 +161,12 @@ class _TopPageState extends State<TopPage> {
                 decoration: const InputDecoration(
                   hintText: '郵便番号を入力',
                 ),
-                onSubmitted: (value) {
+                onSubmitted: (value) async {
                   print(value);
+                  String address;
+                  address = await ZipCode.searchAddressFromZipCode(value);
+
+                  print(address);
                 },
               ),
             ),
