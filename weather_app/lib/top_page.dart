@@ -11,6 +11,7 @@ class TopPage extends StatefulWidget {
 }
 
 class _TopPageState extends State<TopPage> {
+  String address = '-';
   Weather currentWeather =
       Weather(temp: 15, description: '晴れ', tempMax: 18, tempMin: 14);
 
@@ -163,18 +164,17 @@ class _TopPageState extends State<TopPage> {
                 ),
                 onSubmitted: (value) async {
                   print(value);
-                  String address;
                   address = await ZipCode.searchAddressFromZipCode(value);
 
-                  print(address);
+                  setState(() {});
                 },
               ),
             ),
             const SizedBox(
               height: 50,
             ),
-            const Text(
-              '大阪市',
+            Text(
+              address,
               style: TextStyle(fontSize: 25),
             ),
             Text(currentWeather.description!),
