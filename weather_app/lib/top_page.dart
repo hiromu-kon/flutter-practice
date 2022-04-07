@@ -12,6 +12,7 @@ class TopPage extends StatefulWidget {
 
 class _TopPageState extends State<TopPage> {
   String address = '-';
+  String? errorMessage;
   Weather currentWeather =
       Weather(temp: 15, description: '晴れ', tempMax: 18, tempMin: 14);
 
@@ -155,7 +156,7 @@ class _TopPageState extends State<TopPage> {
       body: SafeArea(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               width: 200,
               child: TextField(
                 keyboardType: TextInputType.number,
@@ -164,11 +165,23 @@ class _TopPageState extends State<TopPage> {
                 ),
                 onSubmitted: (value) async {
                   print(value);
-                  address = await ZipCode.searchAddressFromZipCode(value);
+
+                  Map<String, String> response = {};
+                  response = await ZipCode.searchAddressFromZipCode(value);
+
+                  errorMessage = response['message'];
+
+                  if (response.containsKey('address')) {
+                    address = response['address']!;
+                  }
 
                   setState(() {});
                 },
               ),
+            ),
+            Text(
+              errorMessage ?? '',
+              style: TextStyle(color: Colors.red),
             ),
             const SizedBox(
               height: 50,
