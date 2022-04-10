@@ -24,9 +24,12 @@ class Weather {
     this.rainyPercent,
   });
 
+  static const API_KEY = String.fromEnvironment('API_KEY');
+
+  static String publicParametaer = '&appid=$API_KEY&lang=ja&units=metric';
+
   static Future<Weather?> getCurrentWeather(String zipCode) async {
     String _zipCode;
-    const API_KEY = String.fromEnvironment('API_KEY');
 
     if (zipCode.contains('_')) {
       _zipCode = zipCode;
@@ -34,7 +37,7 @@ class Weather {
       _zipCode = zipCode.substring(0, 3) + '-' + zipCode.substring(3);
     }
     String url =
-        'https://api.openweathermap.org/data/2.5/weather?zip=$_zipCode,JP&appid=${API_KEY}&lang=ja&units=metric';
+        'https://api.openweathermap.org/data/2.5/weather?zip=$_zipCode,JP$publicParametaer';
 
     try {
       var result = await get(Uri.parse(url));
@@ -42,12 +45,43 @@ class Weather {
       Map<String, dynamic> data = jsonDecode(result.body);
 
       Weather currentWeather = Weather(
-          description: data['weather']['description'],
-          temp: data['main']['temp'],
-          tempMax: data['main']['temp_max'],
-          tempMin: data['main']['temp_min']);
+        description: data['weather'][0]['description'],
+        temp: data['main']['temp'],
+        tempMax: data['main']['temp_max'],
+        tempMin: data['main']['temp_min'],
+        lon: data['coord']['lon'],
+        lat: data['coord']['lat'],
+      );
+
+      print(data);
+
+      print(currentWeather);
 
       return currentWeather;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  static Future<List<Weather>?> getHourlyWeather(lon, lat) async {
+    String url =
+        'https://api.openweathermap.org/data/2.5/onecall?lat=$lat&lon=$lon&exclude=minutely&$publicParametaer';
+
+    try {
+      var result = await get(Uri.parse(url));
+
+      Map<String, dynamic> data = jsonDecode(result.body);
+
+      List<dynamic> hourlyWeatherData = data['hourly'];
+
+      List<Weather> hourlyWeather = hourlyWeatherData.map((weather) {
+        return Weather(
+          time: DateTime.fromMicrosecondsSinceEpoch(weather['dt'] * 1000),
+          temp: weather['temp'].toInt(),
+          icon: weather['weather'][0]['icon'],
+        );
+      }).toList();
+      print(hourlyWeatherData);
     } catch (e) {
       return null;
     }

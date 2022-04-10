@@ -13,8 +13,7 @@ class TopPage extends StatefulWidget {
 class _TopPageState extends State<TopPage> {
   String address = '-';
   String? errorMessage;
-  Weather currentWeather =
-      Weather(temp: 15, description: '晴れ', tempMax: 18, tempMin: 14);
+  Weather? currentWeather;
 
   List<Weather> hourlyWeather = [
     Weather(
@@ -168,12 +167,15 @@ class _TopPageState extends State<TopPage> {
 
                   Map<String, String> response = {};
                   response = await ZipCode.searchAddressFromZipCode(value);
-                  await Weather.getCurrentWeather(value);
 
                   errorMessage = response['message'];
 
                   if (response.containsKey('address')) {
                     address = response['address']!;
+                    currentWeather = await Weather.getCurrentWeather(value);
+
+                    await Weather.getHourlyWeather(
+                        currentWeather!.lon, currentWeather!.lat);
                   }
 
                   setState(() {});
@@ -191,9 +193,11 @@ class _TopPageState extends State<TopPage> {
               address,
               style: TextStyle(fontSize: 25),
             ),
-            Text(currentWeather.description!),
+            Text(currentWeather == null
+                ? '-'
+                : '${currentWeather!.description}'),
             Text(
-              '${currentWeather.temp}°',
+              currentWeather == null ? '-' : '${currentWeather!.temp}°',
               style: const TextStyle(fontSize: 80),
             ),
             Row(
@@ -201,9 +205,13 @@ class _TopPageState extends State<TopPage> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(right: 8.0),
-                  child: Text('最高:${currentWeather.tempMax}°'),
+                  child: Text(currentWeather == null
+                      ? '最高:-'
+                      : '最高:${currentWeather!.tempMax}°'),
                 ),
-                Text('最低:${currentWeather.tempMin}°'),
+                Text(currentWeather == null
+                    ? '最低:-'
+                    : '最低:${currentWeather!.tempMin}°'),
               ],
             ),
             const SizedBox(
