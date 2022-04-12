@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+// Project imports:
 import 'package:sns_app/model/account.dart';
 import 'package:sns_app/utils/authentication.dart';
 

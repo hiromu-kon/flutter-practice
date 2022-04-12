@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:firebase_auth/firebase_auth.dart';
+
+// Project imports:
 import 'package:sns_app/model/account.dart';
 
 class Authentication {

@@ -1,6 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+
+// Project imports:
 import 'package:sns_app/model/account.dart';
 import 'package:sns_app/model/post.dart';
 
