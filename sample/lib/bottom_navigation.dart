@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -8,10 +9,10 @@ class BottomNavigation extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        title: Text('ABC'),
+        title: const Text('ABC'),
       ),
       body: Container(),
-      bottomNavigationBar: BottomNavigationBar(items: [
+      bottomNavigationBar: BottomNavigationBar(items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.abc),
           label: 'ABC',

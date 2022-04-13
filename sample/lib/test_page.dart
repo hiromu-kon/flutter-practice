@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 class TestPage extends StatelessWidget {
@@ -15,7 +16,7 @@ class TestPage extends StatelessWidget {
             Icons.arrow_back_ios,
             size: 20,
           ),
-          label: Text('プロフィール'),
+          label: const Text('プロフィール'),
         ),
         elevation: 1,
         title: const Text(
@@ -29,7 +30,7 @@ class TestPage extends StatelessWidget {
       body: ListView.separated(
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
-            trailing: Icon(Icons.arrow_forward_ios),
+            trailing: const Icon(Icons.arrow_forward_ios),
             title: Text(
               menuList[index],
             ),
@@ -38,7 +39,7 @@ class TestPage extends StatelessWidget {
         },
         itemCount: menuList.length,
         separatorBuilder: (BuildContext context, int index) {
-          return Divider();
+          return const Divider();
         },
       ),
     );

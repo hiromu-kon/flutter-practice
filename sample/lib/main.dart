@@ -1,5 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+
+// Project imports:
 import 'package:sample/bottom_navigation.dart';
 import 'package:sample/next_page.dart';
 import 'package:sample/tabbar_page.dart';
@@ -43,10 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: const Drawer(),
       appBar: AppBar(
         centerTitle: false,
-        title: Text('Hiromuの勉強'),
+        title: const Text('Hiromuの勉強'),
         flexibleSpace: Image.network(
           'https://images.unsplash.com/photo-1513407030348-c983a97b98d8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80',
           fit: BoxFit.cover,
@@ -102,25 +107,27 @@ class _MyHomePageState extends State<MyHomePage> {
         animatedIcon: AnimatedIcons.menu_close,
         children: [
           SpeedDialChild(
-              child: Icon(Icons.mail),
+              child: const Icon(Icons.mail),
               backgroundColor: Colors.red,
               label: 'Mail',
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: ((context) => BottomNavigation())));
+                        builder: ((context) => const BottomNavigation())));
               }),
           SpeedDialChild(
-              child: Icon(Icons.mail),
+              child: const Icon(Icons.mail),
               backgroundColor: Colors.red,
               label: 'Mail',
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => NextPage())));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => const NextPage())));
               }),
           SpeedDialChild(
-              child: Icon(Icons.copy),
+              child: const Icon(Icons.copy),
               backgroundColor: Colors.blue,
               label: 'Copy',
               onTap: () {
@@ -128,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     MaterialPageRoute(builder: ((context) => TestPage())));
               }),
           SpeedDialChild(
-              child: Icon(Icons.person_add),
+              child: const Icon(Icons.person_add),
               backgroundColor: Colors.green,
               labelWidget: Column(
                 children: const [
@@ -145,10 +152,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => TabBarPage())));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => const TabBarPage())));
               },
-              labelStyle: TextStyle(fontWeight: FontWeight.w500)),
+              labelStyle: const TextStyle(fontWeight: FontWeight.w500)),
         ],
       ),
       // floatingActionButton: FloatingActionButton(

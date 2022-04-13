@@ -1,5 +1,8 @@
-import 'package:circular_menu/circular_menu.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:circular_menu/circular_menu.dart';
 
 class NextPage extends StatelessWidget {
   const NextPage({Key? key}) : super(key: key);
@@ -12,9 +15,9 @@ class NextPage extends StatelessWidget {
         backgroundWidget: CustomScrollView(
           slivers: [
             SliverAppBar(
-              title: Text('Hello Sliver World'),
+              title: const Text('Hello Sliver World'),
               actions: [
-                IconButton(icon: Icon(Icons.search), onPressed: () {}),
+                IconButton(icon: const Icon(Icons.search), onPressed: () {}),
               ],
             ),
             SliverList(
