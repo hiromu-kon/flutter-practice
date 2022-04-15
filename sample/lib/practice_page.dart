@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:circular_menu/circular_menu.dart';
+import 'package:sample/settings_page.dart';
 
 class PracticePage extends StatelessWidget {
   const PracticePage({Key? key}) : super(key: key);
@@ -17,7 +18,14 @@ class PracticePage extends StatelessWidget {
             SliverAppBar(
               title: const Text('Hello Sliver World'),
               actions: [
-                IconButton(icon: const Icon(Icons.search), onPressed: () {}),
+                IconButton(
+                    icon: const Icon(Icons.search),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SettingsPage()));
+                    }),
               ],
             ),
             SliverList(

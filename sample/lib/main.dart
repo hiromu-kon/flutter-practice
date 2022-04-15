@@ -7,6 +7,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 // Project imports:
 import 'package:sample/bottom_navigation.dart';
 import 'package:sample/next_page.dart';
+import 'package:sample/settings_page.dart';
 import 'package:sample/tabbar_page.dart';
 import 'package:sample/test_page.dart';
 
@@ -132,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
               label: 'Copy',
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => TestPage())));
+                    MaterialPageRoute(builder: ((context) => SettingsPage())));
               }),
           SpeedDialChild(
               child: const Icon(Icons.person_add),
