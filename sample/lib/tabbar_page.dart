@@ -1,5 +1,9 @@
 // Flutter imports:
+
 import 'package:flutter/material.dart';
+import 'package:like_button/like_button.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class TabBarPage extends StatelessWidget {
   const TabBarPage({Key? key}) : super(key: key);
@@ -19,14 +23,66 @@ class TabBarPage extends StatelessWidget {
             ],
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: <Widget>[
-            Center(child: Text('くもり', style: TextStyle(fontSize: 50))),
-            Center(child: Text('雨', style: TextStyle(fontSize: 50))),
-            Center(child: Text('晴れ', style: TextStyle(fontSize: 50))),
+            const Center(
+                child: LikeButton(
+              onTap: onLikeButtonTapped,
+            )),
+            Center(child: LikeButton(
+              likeBuilder: (bool isLiked) {
+                return Icon(Icons.home,
+                    color: isLiked ? Colors.deepPurpleAccent : Colors.grey);
+              },
+            )),
+            Center(
+                child: Column(
+              children: [
+                ElevatedButton(
+                  child: const Text('SnackBar'),
+                  onPressed: () {
+                    showTopSnackBar(
+                      context,
+                      CustomSnackBar.success(
+                        message:
+                            "Good job, your release is successful. Have a nice day",
+                      ),
+                    );
+                  },
+                ),
+                ElevatedButton(
+                  child: const Text('SnackBar'),
+                  onPressed: () {
+                    showTopSnackBar(
+                      context,
+                      const CustomSnackBar.info(
+                        message:
+                            "There is some information. You need to do something with that",
+                      ),
+                    );
+                  },
+                ),
+                ElevatedButton(
+                  child: const Text('SnackBar'),
+                  onPressed: () {
+                    showTopSnackBar(
+                      context,
+                      CustomSnackBar.error(
+                        message:
+                            "Something went wrong. Please check your credentials and try again",
+                      ),
+                    );
+                  },
+                ),
+              ],
+            )),
           ],
         ),
       ),
     );
   }
+}
+
+Future<bool> onLikeButtonTapped(bool isLiked) async {
+  return !isLiked;
 }
