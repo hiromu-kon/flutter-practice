@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_alert_app/alarm.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -6,22 +9,57 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Alarm> alarmList = [
+    Alarm(alarmTime: DateTime.now()),
+    Alarm(alarmTime: DateTime.now())
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(''),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+        backgroundColor: Colors.black,
+        body: CustomScrollView(
+          slivers: [
+            CupertinoSliverNavigationBar(
+              backgroundColor: Colors.black,
+              largeTitle: const Text(
+                'アラーム',
+                style: TextStyle(color: Colors.white),
+              ),
+              trailing: GestureDetector(
+                onTap: () {},
+                child: const Icon(
+                  Icons.add,
+                  color: Colors.orange,
+                ),
+              ),
             ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                Alarm alarm = alarmList[index];
+
+                return Column(
+                  children: [
+                    if (index == 0)
+                      const Divider(color: Colors.grey, height: 1),
+                    ListTile(
+                      title: Text(
+                        DateFormat('H:mm').format(alarm.alarmTime),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 50),
+                      ),
+                      trailing: CupertinoSwitch(
+                          value: true, onChanged: (newValue) {}),
+                    ),
+                    const Divider(
+                      color: Colors.grey,
+                      height: 0,
+                    )
+                  ],
+                );
+              }, childCount: alarmList.length),
+            )
           ],
-        ),
-      ),
-    );
+        ));
   }
 }
