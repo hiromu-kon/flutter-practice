@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_alert_app/alarm.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
@@ -42,19 +43,32 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     if (index == 0)
                       const Divider(color: Colors.grey, height: 1),
-                    ListTile(
-                      title: Text(
-                        DateFormat('H:mm').format(alarm.alarmTime),
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 50),
+                    Slidable(
+                      endActionPane: ActionPane(
+                        motion: ScrollMotion(),
+                        children: [
+                          SlidableAction(
+                            onPressed: null,
+                            backgroundColor: Colors.red,
+                            icon: Icons.delete,
+                            label: 'Delete',
+                          ),
+                        ],
                       ),
-                      trailing: CupertinoSwitch(
-                          value: alarm.isActive,
-                          onChanged: (newValue) {
-                            setState(() {
-                              alarm.isActive = newValue;
-                            });
-                          }),
+                      child: ListTile(
+                        title: Text(
+                          DateFormat('H:mm').format(alarm.alarmTime),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 50),
+                        ),
+                        trailing: CupertinoSwitch(
+                            value: alarm.isActive,
+                            onChanged: (newValue) {
+                              setState(() {
+                                alarm.isActive = newValue;
+                              });
+                            }),
+                      ),
                     ),
                     const Divider(
                       color: Colors.grey,
