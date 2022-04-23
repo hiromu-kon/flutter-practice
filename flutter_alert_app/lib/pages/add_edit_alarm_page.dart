@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class AddEditAlarmPage extends StatefulWidget {
   const AddEditAlarmPage({Key? key}) : super(key: key);
@@ -9,6 +11,7 @@ class AddEditAlarmPage extends StatefulWidget {
 
 class _AddEditAlarmPageState extends State<AddEditAlarmPage> {
   TextEditingController controller = TextEditingController();
+  DateTime selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +77,25 @@ class _AddEditAlarmPageState extends State<AddEditAlarmPage> {
                       decoration:
                           const InputDecoration(border: InputBorder.none),
                       readOnly: true,
-                      onTap: () {},
+                      onTap: () {
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return CupertinoDatePicker(
+                                initialDateTime: selectedDate,
+                                mode: CupertinoDatePickerMode.time,
+                                onDateTimeChanged: (newDate) {
+                                  String time =
+                                      DateFormat('H:mm').format(newDate);
+
+                                  selectedDate = newDate;
+                                  setState(() {
+                                    controller.text = time;
+                                  });
+                                },
+                              );
+                            });
+                      },
                     ),
                   )
                 ],
