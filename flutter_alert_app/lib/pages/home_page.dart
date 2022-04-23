@@ -13,10 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Alarm> alarmList = [
-    Alarm(alarmTime: DateTime.now()),
-    Alarm(alarmTime: DateTime.now())
-  ];
+  List<Alarm> alarmList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +28,17 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(color: Colors.white),
               ),
               trailing: GestureDetector(
-                onTap: () {
-                  Navigator.push(
+                onTap: () async {
+                  await Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const AddEditAlarmPage()));
+                          builder: (context) => AddEditAlarmPage(alarmList)));
+
+                  setState(() {
+                    alarmList.sort(
+                      (a, b) => a.alarmTime.compareTo(b.alarmTime),
+                    );
+                  });
                 },
                 child: const Icon(
                   Icons.add,
