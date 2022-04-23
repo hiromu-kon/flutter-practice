@@ -55,11 +55,15 @@ class _HomePageState extends State<HomePage> {
                     if (index == 0)
                       const Divider(color: Colors.grey, height: 1),
                     Slidable(
-                      endActionPane: const ActionPane(
+                      endActionPane: ActionPane(
                         motion: ScrollMotion(),
                         children: [
                           SlidableAction(
-                            onPressed: null,
+                            onPressed: (context) {
+                              alarmList.removeAt(index);
+
+                              setState(() {});
+                            },
                             backgroundColor: Colors.red,
                             icon: Icons.delete,
                             label: 'Delete',
