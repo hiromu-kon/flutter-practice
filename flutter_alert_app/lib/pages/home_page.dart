@@ -79,6 +79,20 @@ class _HomePageState extends State<HomePage> {
                                 alarm.isActive = newValue;
                               });
                             }),
+                        onTap: () async {
+                          await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AddEditAlarmPage(
+                                      alarmList,
+                                      index: index)));
+
+                          setState(() {
+                            alarmList.sort(
+                              (a, b) => a.alarmTime.compareTo(b.alarmTime),
+                            );
+                          });
+                        },
                       ),
                     ),
                     const Divider(
