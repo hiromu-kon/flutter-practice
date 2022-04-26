@@ -33,4 +33,24 @@ class DbProvider {
       'is_active': alarm.isActive ? 0 : 1
     });
   }
+
+  static Future<List<Alarm>> getData() async {
+    final List<Map<String, dynamic>> maps = await database!.query(tableName);
+
+    print(maps);
+
+    if (maps.length == 0) {
+      return [];
+    } else {
+      List<Alarm> alarmList = List.generate(
+        maps.length,
+        (index) => Alarm(
+            id: maps[index]['id'],
+            alarmTime: DateTime.parse(maps[index]['alarm_time']),
+            isActive: maps[index]['is_active'] == 0 ? true : false),
+      );
+
+      return alarmList;
+    }
+  }
 }
