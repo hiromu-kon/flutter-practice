@@ -74,7 +74,8 @@ class _AddEditAlarmPageState extends State<AddEditAlarmPage> {
                       2000, 1, 1, selectedDate.hour, selectedDate.minute));
 
               if (widget.index != null) {
-                widget.alarmList[widget.index!] = alarm;
+                alarm.id = widget.alarmList[widget.index!].id;
+                await DbProvider.updateData(alarm);
               } else {
                 await DbProvider.insertData(alarm);
               }

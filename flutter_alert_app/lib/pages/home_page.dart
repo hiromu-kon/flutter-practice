@@ -95,10 +95,10 @@ class _HomePageState extends State<HomePage> {
                         ),
                         trailing: CupertinoSwitch(
                             value: alarm.isActive,
-                            onChanged: (newValue) {
-                              setState(() {
-                                alarm.isActive = newValue;
-                              });
+                            onChanged: (newValue) async {
+                              alarm.isActive = newValue;
+                              await DbProvider.updateData(alarm);
+                              reBuild();
                             }),
                         onTap: () async {
                           await Navigator.push(
