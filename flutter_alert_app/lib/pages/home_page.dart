@@ -76,10 +76,10 @@ class _HomePageState extends State<HomePage> {
                         motion: ScrollMotion(),
                         children: [
                           SlidableAction(
-                            onPressed: (context) {
-                              alarmList.removeAt(index);
+                            onPressed: (context) async {
+                              await DbProvider.deleteData(alarm.id);
 
-                              setState(() {});
+                              reBuild();
                             },
                             backgroundColor: Colors.red,
                             icon: Icons.delete,
