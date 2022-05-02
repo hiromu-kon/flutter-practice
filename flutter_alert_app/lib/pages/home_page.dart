@@ -18,6 +18,15 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> initDb() async {
     await DbProvider.setDb();
+    alarmList = await DbProvider.getData();
+    setState(() {});
+  }
+
+  Future<void> reBuild() async {
+    alarmList = await DbProvider.getData();
+    alarmList.sort(
+      (a, b) => a.alarmTime.compareTo(b.alarmTime),
+    );
     setState(() {});
   }
 
@@ -46,12 +55,7 @@ class _HomePageState extends State<HomePage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => AddEditAlarmPage(alarmList)));
-
-                  setState(() {
-                    alarmList.sort(
-                      (a, b) => a.alarmTime.compareTo(b.alarmTime),
-                    );
-                  });
+                  reBuild();
                 },
                 child: const Icon(
                   Icons.add,
@@ -72,10 +76,10 @@ class _HomePageState extends State<HomePage> {
                         motion: ScrollMotion(),
                         children: [
                           SlidableAction(
-                            onPressed: (context) {
-                              alarmList.removeAt(index);
+                            onPressed: (context) async {
+                              await DbProvider.deleteData(alarm.id);
 
-                              setState(() {});
+                              reBuild();
                             },
                             backgroundColor: Colors.red,
                             icon: Icons.delete,
@@ -91,10 +95,10 @@ class _HomePageState extends State<HomePage> {
                         ),
                         trailing: CupertinoSwitch(
                             value: alarm.isActive,
-                            onChanged: (newValue) {
-                              setState(() {
-                                alarm.isActive = newValue;
-                              });
+                            onChanged: (newValue) async {
+                              alarm.isActive = newValue;
+                              await DbProvider.updateData(alarm);
+                              reBuild();
                             }),
                         onTap: () async {
                           await Navigator.push(
@@ -104,11 +108,7 @@ class _HomePageState extends State<HomePage> {
                                       alarmList,
                                       index: index)));
 
-                          setState(() {
-                            alarmList.sort(
-                              (a, b) => a.alarmTime.compareTo(b.alarmTime),
-                            );
-                          });
+                          setState(() {});
                         },
                       ),
                     ),
