@@ -1,5 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
+/// 確認ダイアログ
 Future<bool> showConfirmDialog(context, message) async {
   return await showDialog<bool>(
         context: context,
@@ -8,13 +10,13 @@ Future<bool> showConfirmDialog(context, message) async {
             title: Text(message),
             actions: <Widget>[
               TextButton(
-                child: Text('いいえ'),
+                child: const Text('いいえ'),
                 onPressed: () {
                   Navigator.of(context).pop(false);
                 },
               ),
               TextButton(
-                child: Text('はい'),
+                child: const Text('はい'),
                 onPressed: () {
                   Navigator.of(context).pop(true);
                 },
@@ -26,7 +28,7 @@ Future<bool> showConfirmDialog(context, message) async {
       false;
 }
 
-/// test dialog
+/// 確認ダイアログ（メッセージカスタム）
 Future<bool> showActionConfirmDialog(
   BuildContext context,
   String message,
@@ -67,7 +69,7 @@ Future showTextDialog(context, message) async {
         title: Text(message),
         actions: <Widget>[
           TextButton(
-            child: Text('OK'),
+            child: const Text('OK'),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -86,7 +88,7 @@ Future showErrorDialog(BuildContext context, dynamic e) async {
         title: Text(e.toString()),
         actions: <Widget>[
           TextButton(
-            child: Text('OK'),
+            child: const Text('OK'),
             onPressed: () {
               Navigator.of(context).pop();
             },
