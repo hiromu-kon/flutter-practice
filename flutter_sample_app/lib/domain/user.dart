@@ -14,7 +14,7 @@ abstract class User implements _$User {
     required String email,
   }) = _User;
 
-  factory User.empty() => User(name: '', email: '');
+  factory User.empty() => const User(name: '', email: '');
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
