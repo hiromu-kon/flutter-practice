@@ -61,40 +61,70 @@ Future<bool> showActionConfirmDialog(
 }
 
 /// 文字ダイアログ
-Future showTextDialog(context, message) async {
+Future<bool> showTextDialog(context, message) async {
   return await showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text(message),
-        actions: <Widget>[
-          TextButton(
-            child: const Text('OK'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(message),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      ) ??
+      false;
 }
 
-Future showErrorDialog(BuildContext context, dynamic e) async {
-  await showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text(e.toString()),
-        actions: <Widget>[
-          TextButton(
-            child: const Text('OK'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
+Future<bool> showErrorDialog(BuildContext context, dynamic e) async {
+  return await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(e.toString()),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      ) ??
+      false;
+}
+
+Future<bool> showWidgetDialog(
+    BuildContext context, dynamic e, Widget widget) async {
+  return await showDialog<bool>(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(e.toString()),
+            content: widget,
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Cancel'),
+                onPressed: () {
+                  Navigator.pop(context, false);
+                },
+              ),
+              TextButton(
+                child: const Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+              ),
+            ],
+          );
+        },
+      ) ??
+      false;
 }
