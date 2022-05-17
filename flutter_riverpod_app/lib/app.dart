@@ -1,5 +1,8 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod_app/pages/home_page.dart';
+
+// Project imports:
+import 'package:flutter_riverpod_app/presentation/home_page.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
