@@ -1,6 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_sample_app/domain/memo/memo.dart';
+import 'package:flutter_sample_app/entities/memo/memo.dart';
 import 'package:flutter_sample_app/repository/memo_repository.dart';
 
 class MemoListModel with ChangeNotifier {

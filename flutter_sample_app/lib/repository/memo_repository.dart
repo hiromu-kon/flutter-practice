@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_sample_app/domain/memo/memo.dart';
+import 'package:flutter_sample_app/entities/memo/memo.dart';
 
 /// Memo関連の操作をまとめたクラス
 class MemoRepository {

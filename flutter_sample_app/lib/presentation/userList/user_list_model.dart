@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 
 // Project imports:
-import 'package:flutter_sample_app/domain/user/user.dart';
+import 'package:flutter_sample_app/entities/user/user.dart';
 import 'package:flutter_sample_app/repository/user_repository.dart';
 
 class UserListModel extends ChangeNotifier {

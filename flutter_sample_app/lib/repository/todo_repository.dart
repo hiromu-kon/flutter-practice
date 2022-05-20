@@ -2,7 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Project imports:
-import 'package:flutter_sample_app/domain/todo/todo.dart';
+import 'package:flutter_sample_app/entities/todo/todo.dart';
 
 /// Todo関連の操作をまとめたクラス
 class TodoRepository {

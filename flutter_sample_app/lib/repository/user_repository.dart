@@ -2,7 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Project imports:
-import 'package:flutter_sample_app/domain/user/user.dart';
+import 'package:flutter_sample_app/entities/user/user.dart';
 
 /// User関連の操作をまとめたクラス
 class UserRepository {
