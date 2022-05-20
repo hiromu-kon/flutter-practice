@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 // Project imports:
-import 'package:flutter_sample_app/domain/user_state.dart';
+import 'package:flutter_sample_app/entities/user_state.dart';
 
 class AppModel {
   AppModel() {
