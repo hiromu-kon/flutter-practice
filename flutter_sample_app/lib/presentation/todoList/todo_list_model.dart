@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:flutter_sample_app/domain/todo/todo.dart';
+import 'package:flutter_sample_app/entities/todo/todo.dart';
 import 'package:flutter_sample_app/repository/todo_repository.dart';
 
 class TodoListModel with ChangeNotifier {
