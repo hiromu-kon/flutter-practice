@@ -2,7 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 // Project imports:
-import 'package:flutter_sample_app/extension/string_extension.dart';
+import 'package:flutter_sample_app/extensions/string_extension.dart';
 
 /// 認証関連の操作をまとめたクラス
 class AuthRepository {

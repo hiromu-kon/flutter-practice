@@ -1,5 +1,7 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_sample_app/gen/assets.gen.dart';
+import 'package:flutter_sample_app/utils/dialog_utils.dart';
 
 // Package imports:
 import 'package:provider/provider.dart';
@@ -15,30 +17,45 @@ class UserListPage extends StatelessWidget {
     return ChangeNotifierProvider<UserListModel>(
       create: (_) => UserListModel(),
       child: Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: const Text('Todo Page'),
-          ),
-          body: Consumer<UserListModel>(builder: (context, model, child) {
-            final users = model.users;
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('Todo Page'),
+        ),
+        body: Consumer<UserListModel>(builder: (context, model, child) {
+          final users = model.users;
 
-            print(users);
+          print(users);
 
-            if (users == null) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            return ListView.builder(
-              itemCount: users.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: Text(users[index].name),
-                  subtitle: Text(users[index].email),
-                );
-              },
+          if (users == null) {
+            return const Center(
+              child: CircularProgressIndicator(),
             );
-          })),
+          }
+          return ListView.builder(
+            itemCount: users.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                title: Text(users[index].name),
+                subtitle: Text(users[index].email),
+              );
+            },
+          );
+        }),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            Widget widget = Assets.avatar.image(
+              width: 50.0,
+            );
+
+            final isYes = await showWidgetDialog(
+              context,
+              'メモ編集',
+              widget,
+            );
+          },
+          child: const Icon(Icons.plus_one),
+        ),
+      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_sample_app/presentation/imageList/image_list_page.dart';
 import 'package:flutter_sample_app/presentation/login/login_page.dart';
 import 'package:flutter_sample_app/presentation/memoList/memo_list_page.dart';
 
@@ -53,6 +54,15 @@ class HomePage extends StatelessWidget {
                         builder: (context) => const MemoListPage()));
               },
               child: const Text('Memo一覧'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ImageListPage()));
+              },
+              child: const Text('Image一覧'),
             ),
           ],
         ),
