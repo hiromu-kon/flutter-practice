@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:flutter_sample_app/gen/assets.gen.dart';
 
 class ImageListPage extends StatelessWidget {
