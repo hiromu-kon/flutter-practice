@@ -7,7 +7,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: themeNavy,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -24,7 +24,7 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }
