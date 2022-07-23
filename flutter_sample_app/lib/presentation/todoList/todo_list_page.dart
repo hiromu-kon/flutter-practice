@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 // Project imports:
 import 'package:flutter_sample_app/presentation/todoList/todo_list_model.dart';
-import 'package:flutter_sample_app/utils/dialog_utils.dart';
+import 'package:flutter_sample_app/helper/utils/dialog_utils.dart';
 
 class TodoListPage extends StatelessWidget {
   const TodoListPage({Key? key}) : super(key: key);

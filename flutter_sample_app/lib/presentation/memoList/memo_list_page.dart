@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 // Project imports:
 import 'package:flutter_sample_app/presentation/addMemo/add_memo_page.dart';
 import 'package:flutter_sample_app/presentation/memoList/memo_list_model.dart';
-import 'package:flutter_sample_app/utils/dialog_utils.dart';
+import 'package:flutter_sample_app/helper/utils/dialog_utils.dart';
 
 class MemoListPage extends StatelessWidget {
   const MemoListPage({Key? key}) : super(key: key);
