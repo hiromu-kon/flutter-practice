@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 // Project imports:
 import 'package:flutter_sample_app/gen/assets.gen.dart';
 import 'package:flutter_sample_app/presentation/userList/user_list_model.dart';
-import 'package:flutter_sample_app/utils/dialog_utils.dart';
+import 'package:flutter_sample_app/helper/utils/dialog_utils.dart';
 
 class UserListPage extends StatelessWidget {
   const UserListPage({Key? key}) : super(key: key);
