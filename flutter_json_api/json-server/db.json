@@ -1,0 +1,42 @@
+{
+  "counter": [
+    {
+      "counter": 101,
+      "id": 1
+    }
+  ],
+  "todos": [
+    {
+      "id": 1,
+      "title": "InitialTask",
+      "content": "Yeah!!!!"
+    },
+    {
+      "id": 2,
+      "title": "SecondTask",
+      "content": "Yeah!!!!"
+    },
+    {
+      "id": 3,
+      "title": "ThirdTask",
+      "content": "Yeah!!!!"
+    }
+  ],
+  "users": [
+    {
+      "name": "John",
+      "age": 21,
+      "email": "****@gmail.com",
+      "posts": [
+        {
+          "id": 1,
+          "title": "test"
+        },
+        {
+          "id": 2,
+          "title": "test"
+        }
+      ]
+    }
+  ]
+}
