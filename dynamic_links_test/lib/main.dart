@@ -61,8 +61,9 @@ class MyHomePage extends StatelessWidget {
   }
 
   void _openDynamicLink() async {
-    launchUrl((await _buildDynamicLink()),
-        mode: LaunchMode.externalApplication);
+    final url = await _buildDynamicLink();
+    print(url);
+    launchUrl((url), mode: LaunchMode.externalApplication);
   }
 
   @override
